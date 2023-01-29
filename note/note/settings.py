@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles', # реймворк для работы со статическими файлами
     'django.contrib.sites',
     'notepad',
-    'widget_tweaks'
+    'rest_framework'
 ]
 
 SITE_ID = 1

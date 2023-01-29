@@ -1,0 +1,6 @@
+<form method="POST">
+    {% csrf_token %}
+    <input type="input" value="{{ note.heading }}" name="heading" id="heading" />
+    <input type="input" value="{{ note.text }}" name="text" id="text" />
+    <input type="submit" value="Изменить запись">
+</form>

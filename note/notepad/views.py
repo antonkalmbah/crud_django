@@ -24,11 +24,10 @@ def create(request):
             note.heading = request.POST.get("heading")
             note.text = request.POST.get("text")
             note.save()
-
         return HttpResponseRedirect("/")
 
     except:
-        return HttpResponse('Ошибка в функции add_note в файле views в приложении notepad')
+        return HttpResponse('Ошибка в функции create в файле views в приложении notepad')
 
 def delete(request, id):
     try:
@@ -46,6 +45,7 @@ def edit(request, id):
             note.heading = request.POST.get("heading")
             note.text = request.POST.get("text")
             note.save()
+
             return HttpResponseRedirect("/")
         else:
             return render(request, 'notepad/edit.html', {'note' : note})

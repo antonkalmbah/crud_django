@@ -2,11 +2,22 @@ from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Notepad
 
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
 
+from .models import Notepad
+from .serializers import *
+
+@api_view(['GET'])
 def index(request):
     try:
-        notes = Notepad.objects.all()
-        return render(request, 'notepad/index.html', {'notes': notes})
+        if request.method == 'GET':
+            notes = Notepad.objects.all()
+            serialize_note = NotepadSerializers(notes, many = True)
+            # возвращает Django REST framework с API моего блокнота
+            return(Response({'data': serialize_note.data}))
+            # return render(request, 'notepad/index.html', {'notes': notes})
     except:
         return HttpResponse('Ошибка в функции index в файле views в приложении notepad')
 

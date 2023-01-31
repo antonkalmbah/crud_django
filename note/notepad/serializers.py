@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .model import Notepad
+from .models import Notepad
 
 class NotepadSerializers(serializers.ModelSerializer):
     class Meta:

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles', # реймворк для работы со статическими файлами
     'django.contrib.sites',
     'notepad',
-    'rest_framework'
+    'rest_framework', # API
+    'corsheaders' # важная библиотека для безопасного использования ресурсов между разными источниками
 ]
 
 SITE_ID = 1
@@ -52,7 +53,8 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'note.urls'
@@ -127,3 +129,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+   	'http://localhost:8080',
+)

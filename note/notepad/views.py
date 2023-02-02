@@ -17,6 +17,7 @@ def index(request):
             serialize_note = NotepadSerializers(notes, many = True)
             # возвращает Django REST framework с API моего блокнота
             return(Response({'data': serialize_note.data}))
+            # возвращает html-страничку из templates самого плагина
             # return render(request, 'notepad/index.html', {'notes': notes})
     except:
         return HttpResponse('Ошибка в функции index в файле views в приложении notepad')
@@ -42,9 +43,10 @@ def create(request):
 
 def delete(request, id):
     try:
-        note = Notepad.objects.get(id=id)
-        note.delete()
-        return HttpResponseRedirect("/")
+        if request.method == 'POST':
+            note = Notepad.objects.get(id=id)
+            note.delete()
+            return HttpResponseRedirect("/")
     except:
         print('Записи не существует')
 

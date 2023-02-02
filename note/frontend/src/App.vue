@@ -1,22 +1,16 @@
 <template>
   <div>
-    <HelloWorld />
+    <FormComponent />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import axios from 'axios'
+import FormComponent from './components/FormComponent.vue';
+
 export default {
   name: 'App',
-  components: [
-    HelloWorld
-  ],
-  data: {
-    getIndex() {
-      const url = `http://localhost:8000/api/index/`;
-      return axios.get(url).then(response => response.data);
-    }
+  components: {
+    FormComponent
   }
 
 }

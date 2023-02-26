@@ -2,23 +2,12 @@ from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Notepad
 
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from rest_framework import status
-
-from .models import Notepad
-from .serializers import *
-
-@api_view(['GET'])
 def index(request):
     try:
         if request.method == 'GET':
             notes = Notepad.objects.all()
-            serialize_note = NotepadSerializers(notes, many = True)
-            # возвращает Django REST framework с API моего блокнота
-            return(Response({'data': serialize_note.data}))
             # возвращает html-страничку из templates самого плагина
-            # return render(request, 'notepad/index.html', {'notes': notes})
+            return render(request, 'notepad/index.html', {'notes': notes})
     except:
         return HttpResponse('Ошибка в функции index в файле views в приложении notepad')
 
@@ -43,12 +32,12 @@ def create(request):
 
 def delete(request, id):
     try:
-        if request.method == 'POST':
-            note = Notepad.objects.get(id=id)
-            note.delete()
-            return HttpResponseRedirect("/")
+        note = Notepad.objects.get(id=id)
+        note.delete()
+        
+        return HttpResponseRedirect("/")
     except:
-        print('Записи не существует')
+        return HttpResponse('Записи не существует')
 
 def edit(request, id):
     try:
@@ -65,6 +54,3 @@ def edit(request, id):
 
     except:
         return HttpResponse('Ошибка в функции edit в файле views в приложении notepad')
-
-
-

@@ -1,16 +1,20 @@
 <template>
   <div>
     <thead>
-        <a href="/admin">Ссылка в админ-панель</a><hr>
+        <a href="http://127.0.0.1:8000/admin/">Ссылка в админ-панель</a><hr>
     </thead>
     <tbody>
       <h1>Заголовок в FormComponent.vue</h1>
     </tbody>
-    <div v-for="note in info.data">
-      {{ note.id }}. {{ note.heading }} <br />
-      {{ note.text }} 
-      <button>delete</button>
-      <hr />
+    <div>
+      <ul v-for="i in info">
+        <li>{{ i.name }}</li>
+        <li>{{ i.second_name }}</li>
+        <li>{{ i.age }}</li>
+      </ul>
+    </div>
+    <div>
+      {{ getInfo }}
     </div>
   </div>
 </template>
@@ -20,22 +24,29 @@ import axios from 'axios';
 
 export default {
   name: 'FormComponent',
-  data () {
+  data() {
     return {
-      info: '',
-      delete: null
+      info: [
+        {
+          name: 'Anton',
+          second_name: 'Kalmbakh',
+          age: 27
+        } 
+      ]
     }
   },
   mounted() {
-    axios
-      .get('http://127.0.0.1:8000/')
-      .then(response => (this.info = response.data)),
-
-    axios
-      .get('')
+    
+  },
+  methods: {
+    getInfo() {
+      axios.get('http://127.0.0.1:8000/api/')
+    }
   }
 }
 
 </script>
+
+<style>
 
 </style>

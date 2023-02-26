@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# т.к. проект не критичный, то не столь важно разглашение кода
 SECRET_KEY = 'django-insecure-7z^i=oakf)_6p@5^ihrls@ydu!6_2g_jba_)4o-ct4hba#i$7x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -37,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes', # фреймворк типов данных
     'django.contrib.sessions', # фреймвор сессий
     'django.contrib.messages', # фреймворк сообщений
-    'django.contrib.staticfiles', # реймворк для работы со статическими файлами
+    'django.contrib.staticfiles', # фреймворк для работы со статическими файлами
     'django.contrib.sites',
     'notepad',
+    'notepad_api_vue',
     'rest_framework', # API
-    'corsheaders' # важная библиотека для безопасного использования ресурсов между разными источниками
+    'corsheaders', # важная библиотека для безопасного использования ресурсов между разными источниками
+    'parsing'
 ]
 
 SITE_ID = 1
@@ -62,7 +66,7 @@ ROOT_URLCONF = 'note.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,6 +77,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
 ]
 
 WSGI_APPLICATION = 'note.wsgi.application'
@@ -123,13 +131,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CORS — это система совместного использования ресурсов между разными источниками. Это очень полезная библиотека для безопасности и разработки в целом.
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (

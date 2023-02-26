@@ -13,10 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers 
+from notepad_api_vue.views import IndexViewSet
+# from notepad_api_vue.models import Notepad
+# from notepad_api_vue.serializers import NotepadSerializers
+
+
+
+
+router = routers.DefaultRouter() 
+# router.register(r'api', IndexViewSet.as_view(queryset=Notepad.objects.all(), serializer_class=NotepadSerializers), 'api')
+
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', include('notepad.urls')),
-    path('admin/', admin.site.urls)
+    path('parsing/', include('parsing.urls')),
+    # path('api/', include(router.urls))
 ]

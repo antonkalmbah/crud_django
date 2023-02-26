@@ -9,7 +9,11 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  delimiters: ["[{", "}]"],
   router,
-  components: { App },
+  components: { 
+    App 
+  },
+  
   template: '<App/>'
 })

@@ -5,12 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Django-project</title>
+    {% load static %}
+    <link href="{% static 'notepad/css/styles.css' %}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <h1>Страница из функции render в views.index</h1>
+        <div class="tvdd" role="img" aria-label="Three intersecting rings of twelve pulsing dots that never collide">
+            <div class="tvdd__ring">
+                <div class="tvdd__ring-dots">
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                </div>
+            </div>
+            <div class="tvdd__ring">
+                <div class="tvdd__ring-dots">
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                </div>
+            </div>
+            <div class="tvdd__ring">
+                <div class="tvdd__ring-dots">
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                    <div class="tvdd__ring-dot"></div>
+                </div>
+            </div>
+        </div>
         <thead>
-            <a href="/admin">Ссылка в админ-панель</a><hr>
+            <a href="/admin">Ссылка в админ-панель</a>
+            <hr>
         </thead>
 
         <tbody>
@@ -25,7 +81,6 @@
                     <hr>
                 {% endfor %}
             {% endif %}
-            
         </tbody>
     </div>
 </body>

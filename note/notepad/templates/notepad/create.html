@@ -1,6 +1,10 @@
+{% extends './index.html' %}
+
+{% block content %}
 <form action="{% url 'create' %}" method="POST">
     {% csrf_token %}
     <input type="input" value="" name="heading" id="heading" />
     <input type="input" value="" name="text" id="text" />
     <input type="submit" value="Добавить запись">
 </form>
+{% endblock content %}

@@ -7,7 +7,7 @@ def index(request):
         if request.method == 'GET':
             notes = Notepad.objects.all()
             # возвращает html-страничку из templates самого плагина
-            return render(request, 'notepad/index.html', {'notes': notes})
+            return render(request, 'notepad/list.html', {'notes': notes})
     except:
         return HttpResponse('Ошибка в функции index в файле views в приложении notepad')
 

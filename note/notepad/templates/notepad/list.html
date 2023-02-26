@@ -1,0 +1,15 @@
+{% extends './index.html' %}
+
+{% block content %}
+    <a href="/form_add">Добавить запись</a><hr>
+    <!-- Получаем заголовок из БД -->
+    {% if notes %}
+        {% for note in notes %}
+            {{ note.id }}. {{ note.heading }} <br>
+            {{ note.text }} <br>
+            <a href="/form_add/delete/{{ note.id }}">Удалить</a>
+            <a href="/form_add/edit/{{ note.id }}">Редактировать</a>
+            <hr>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

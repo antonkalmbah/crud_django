@@ -12,76 +12,75 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <h1>Страница из функции render в views.index</h1>
-        <div class="tvdd" role="img" aria-label="Three intersecting rings of twelve pulsing dots that never collide">
-            <div class="tvdd__ring">
-                <div class="tvdd__ring-dots">
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                </div>
-            </div>
-            <div class="tvdd__ring">
-                <div class="tvdd__ring-dots">
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                </div>
-            </div>
-            <div class="tvdd__ring">
-                <div class="tvdd__ring-dots">
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                    <div class="tvdd__ring-dot"></div>
-                </div>
-            </div>
-        </div>
+    <div id="app" class="app">
+        <h1>CRUD. Страница из функции index в views.index</h1>
+
         <thead>
             <a href="/admin">Ссылка в админ-панель</a>
             <hr>
         </thead>
 
         <tbody>
-            <a href="/form_add">Добавить запись</a><hr>
-            <!-- Получаем заголовок из БД -->
-            {% if notes %}
-                {% for note in notes %}
-                    {{ note.id }}. {{ note.heading }} <br>
-                    {{ note.text }} <br>
-                    <a href="/form_add/delete/{{ note.id }}">Удалить</a>
-                    <a href="/form_add/edit/{{ note.id }}">Редактировать</a>
-                    <hr>
-                {% endfor %}
-            {% endif %}
+            {% block content %}
+            {% endblock content %}
         </tbody>
+
+        <tfooter>
+            <!-- -------------- -------------- Летающие точки -------------- -------------- -->
+            <!-- <div class="tvdd" role="img" aria-label="Three intersecting rings of twelve pulsing dots that never collide">
+                <div class="tvdd__ring">
+                    <div class="tvdd__ring-dots">
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                    </div>
+                </div>
+                <div class="tvdd__ring">
+                    <div class="tvdd__ring-dots">
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                    </div>
+                </div>
+                <div class="tvdd__ring">
+                    <div class="tvdd__ring-dots">
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                        <div class="tvdd__ring-dot"></div>
+                    </div>
+                </div>
+
+            </div> -->
+            <!-- -------------- -------------- -------------- -------------- -------------- -->
+        </tfooter>
+
     </div>
 </body>
 </html>

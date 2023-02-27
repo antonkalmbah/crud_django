@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# т.к. проект не критичный, то не столь важно разглашение кода
+# т.к. проект некритичный, то не столь важно разглашение кода
 SECRET_KEY = 'django-insecure-7z^i=oakf)_6p@5^ihrls@ydu!6_2g_jba_)4o-ct4hba#i$7x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -41,11 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.messages', # фреймворк сообщений
     'django.contrib.staticfiles', # фреймворк для работы со статическими файлами
     'django.contrib.sites',
-    'notepad',
-    'notepad_api_vue',
+    'notepad', # корневой CRUD
+    'notepad_api_vue', # попытка сделать роуты для Vue (не работает)
     'rest_framework', # API
     'corsheaders', # важная библиотека для безопасного использования ресурсов между разными источниками
-    'parsing'
+    'parsing', # попытка сделать мини-сервис для парсинга сайтов (не работает)
+    'telegrambot' # создание своего бота в телеге (не начинал)
 ]
 
 SITE_ID = 1

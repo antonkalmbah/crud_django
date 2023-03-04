@@ -1,6 +1,14 @@
-from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from .serializers import NotepadSerializers
 from .models import Notepad
+from rest_framework import viewsets
+
+
+class NotepadViewSets(viewsets.ModelViewSet):
+    queryset = Notepad.objects.all()
+    serializer_class = NotepadSerializers
+
 
 def index(request):
     try:
@@ -10,6 +18,7 @@ def index(request):
             return render(request, 'notepad/list.html', {'notes': notes})
     except:
         return HttpResponse('Ошибка в функции index в файле views в приложении notepad')
+
 
 def form_add(request):
     try:
@@ -30,14 +39,16 @@ def create(request):
     except:
         return HttpResponse('Ошибка в функции create в файле views в приложении notepad')
 
+
 def delete(request, id):
     try:
         note = Notepad.objects.get(id=id)
         note.delete()
-        
+
         return HttpResponseRedirect("/")
     except:
         return HttpResponse('Записи не существует')
+
 
 def edit(request, id):
     try:
@@ -50,7 +61,7 @@ def edit(request, id):
 
             return HttpResponseRedirect("/")
         else:
-            return render(request, 'notepad/edit.html', {'note' : note})
+            return render(request, 'notepad/edit.html', {'note': note})
 
     except:
         return HttpResponse('Ошибка в функции edit в файле views в приложении notepad')

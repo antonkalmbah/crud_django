@@ -53,15 +53,12 @@ def delete(request, id):
 def edit(request, id):
     try:
         note = Notepad.objects.get(id=id)
-
         if request.method == "POST":
             note.heading = request.POST.get("heading")
             note.text = request.POST.get("text")
             note.save()
-
             return HttpResponseRedirect("/")
         else:
             return render(request, 'notepad/edit.html', {'note': note})
-
     except:
         return HttpResponse('Ошибка в функции edit в файле views в приложении notepad')

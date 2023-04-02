@@ -7,43 +7,58 @@ from notepad.models import Notepad
 TOKEN = "6207508766:AAGGM21zo8YFhxlGUOU0_6tRAu6Cazps2SQ"
 bot = telebot.TeleBot(TOKEN)
 
+back = 'Назад'
+list = 'Список: '
+all_list = 'Показать список записей'
+new_note = 'Создать новую запись'
+choose = 'Выбирай: '
 
-# создаём комманду для запуска через manage.py
+
+# создаём команду для запуска через manage.py
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         bot.enable_save_next_step_handlers(delay=2)  # Сохранение обработчиков
         bot.load_next_step_handlers()
-        bot.infinity_polling()
+
+
+notes = Notepad.objects.all()
 
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message,
-                 '''Привет.
-Теперь я твой новый блокнот.
-Вноси новую информацию и она останется тут. ''')
+    bot.reply_to(message, f'''Привет, {message.from_user.username}.\nТеперь я твой новый блокнот. 
+    \nВноси новую информацию и она останется тут. ''')
     chat_id = message.chat.id
     menu_buttons = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_list = types.KeyboardButton('Показать список записей')
-    button_new_note = types.KeyboardButton('Создать новую запись')
+    button_list = types.KeyboardButton(all_list)
+    button_new_note = types.KeyboardButton(new_note)
     menu_buttons.add(button_list, button_new_note)
-    bot.send_message(chat_id, 'Выбирай: ', reply_markup=menu_buttons)
+    bot.send_message(chat_id, choose, reply_markup=menu_buttons)
 
 
 @bot.message_handler(content_types=['text'])
 def list_note(message):
-
-    if message.text == 'Назад':
+    if message.text == back:
         send_welcome(message)
 
-    if message.text == 'Показать список записей':
-        notes = Notepad.objects.all()
+    for note in notes:
+        if message.text == note.heading:
+            bot.reply_to(message, note.text)
+
+    if message.text == all_list:
         menu_buttons = types.ReplyKeyboardMarkup(resize_keyboard=True)
         for note in notes:
-            button_note = types.KeyboardButton(str(note.id) + '. ' + note.heading)
+            button_note = types.KeyboardButton(text=note.heading)
             menu_buttons.add(button_note)
-        button_return = types.KeyboardButton('Назад')
+        button_return = types.KeyboardButton(back)
         menu_buttons.add(button_return)
-        bot.send_message(message.chat.id, 'Список: ', reply_markup=menu_buttons)
+        bot.send_message(message.chat.id, list, reply_markup=menu_buttons)
+
+    # if message.text == new_note:
+        # note = Notepad()
+        # note.heading = message.text
+        # note.save()
+        # print('1111')
 
 
+bot.infinity_polling()

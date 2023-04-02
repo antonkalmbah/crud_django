@@ -62,3 +62,11 @@ def edit(request, id):
             return render(request, 'notepad/edit.html', {'note': note})
     except:
         return HttpResponse('Ошибка в функции edit в файле views в приложении notepad')
+    
+def sql(request):
+    sql_note = Notepad.objects.raw('SELECT * FROM notepad_notepad')
+    
+    for note in sql_note:
+        print(str(note.id) + note.heading + note.text)
+        
+    return HttpResponse('all')
